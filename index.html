@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Logan Rizz 🐒</title>
+  <title>Rizz Experience</title>
   <style>
     body {
       background-color: black;
@@ -20,39 +20,34 @@
       position: fixed;
       bottom: 10px;
       color: red;
-      animation: rainbow 2s infinite;
+      animation: hoverUpDown 2s infinite;
     }
 
-    @keyframes rainbow {
-      0% { color: violet; }
-      16.666% { color: indigo; }
-      33.333% { color: blue; }
-      50% { color: green; }
-      66.666% { color: yellow; }
-      83.333% { color: orange; }
-      100% { color: red; }
+    #rizzText, #refreshText {
+      cursor: pointer;
     }
 
-    #refreshText {
-      display: none;
+    @keyframes hoverUpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
   </style>
 </head>
-<body onclick="playRizz()">
-  <div id="rizzText">Click to see rizz again.</div>
-  <div id="refreshText">Hope you enjoyed the immaculate rizz. Refresh to see it again.</div>
-  <audio id="rizzAudio" src="https://raw.githubusercontent.com/iDarkGaming/bah/main/lv_0_20231111153023.mp3" loop></audio>
+<body>
+  <div id="rizzText" onclick="playRizz()">Click me to see rizz.</div>
+  <audio id="rizzAudio" src="https://raw.githubusercontent.com/iDarkGaming/bah/main/lv_0_20231111153023.mp3"></audio>
   <script>
     const rizzText = document.getElementById('rizzText');
-    const refreshText = document.getElementById('refreshText');
     const rizzAudio = document.getElementById('rizzAudio');
-    const madeByAyden = document.createElement('div');
-    madeByAyden.id = 'madeByAyden';
-    madeByAyden.innerText = 'made by ayden';
 
     function playRizz() {
-      rizzText.style.display = 'none';
-      document.body.appendChild(madeByAyden);
+      // Fade out the text
+      rizzText.style.transition = 'opacity 0.3s';
+      rizzText.style.opacity = '0';
 
       // Play audio
       rizzAudio.play();
@@ -67,11 +62,13 @@
       // Set timeout to handle the end of audio and gif
       setTimeout(() => {
         rizzGif.remove();
-        madeByAyden.remove();
-        rizzText.style.display = 'block';
-        refreshText.style.display = 'block';
+
+        // Fade in the text
+        rizzText.style.opacity = '1';
       }, rizzAudio.duration * 1000);
     }
   </script>
+  <div id="refreshText" onclick="playRizz()">Click me to see rizz again.</div>
+  <div id="madeByAyden">Made by Ayden Vergara</div>
 </body>
 </html>
